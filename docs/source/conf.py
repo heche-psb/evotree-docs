@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'evotree'
+copyright = '2025, Hengchi Chen'
+author = 'Hengchi Chen'
 
 release = '0.1'
 version = '0.1.0'
