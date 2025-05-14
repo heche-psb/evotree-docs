@@ -1,5 +1,5 @@
 evotree documentation
-===================================
+=====================
 
 **evotree** is a Python library for plotting phylogenetic tree and implementing a number of comparative phylogenetic analyses 
 
@@ -16,5 +16,3 @@ Contents
 
    installation
    usage
-   Example_Code
-   Example_Data

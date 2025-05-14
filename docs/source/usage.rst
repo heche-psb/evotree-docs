@@ -4,7 +4,7 @@ Usage
 .. _plottree:
 
 Plottree
-------------
+--------
 
 Let's draw a simple phylogenetic tree using the command below:
 
@@ -13,10 +13,11 @@ Let's draw a simple phylogenetic tree using the command below:
 >>> TB.basicdraw()
 >>> TB.saveplot('Baisc_Tree.svg')
 
-.. image:: Example_Data/wgd_dmd.svg
+.. image:: Example_Data/Baisc_Tree.svg
 
 
 Users can also write the above code into a ``*.py`` file and plot the tree using the command below:
+
 .. code-block:: console
 
       (ENV)$ python Example_Code/basic_tree.py
@@ -24,6 +25,6 @@ Users can also write the above code into a ``*.py`` file and plot the tree using
 
 .. note::
 
-       All the codes and output figures can be found in :doc:`Example_Code` and :doc:`Example_Data`.
+       All the codes can be found in `Example_Code <../Example_Code/>`__.
 
 
