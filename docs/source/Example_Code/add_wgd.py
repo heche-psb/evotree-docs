@@ -22,4 +22,8 @@ TB.drawscale(plotfulllengthscale=True,fullscaletickheight=0.1,fullscaleticklabel
 # Add time-scale at the bottom, set geoscaling (here the branch length is at the unit of 100 million years so we set as 100), preset xticks (by default six evenly-spaced xticks) as [0,100,200,..,1300], yoffset for tick and ticklabel
 #
 #
-TB.saveplot('Add_TimeScale.svg')
+TB.drawwgd(wgd="Spi_WGD.tsv",addlegend=True,legendlabel="Newly dated ancient polyploidy event",lw=8,al=0.8)
+# With external data on WGD date (example as Spirogloea muscicola), plot WGD dates in the corresponding time and phylogenetic location
+#
+#
+TB.saveplot('Add_WGD.svg')
