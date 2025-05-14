@@ -25,6 +25,6 @@ Users can also write the above code into a ``*.py`` file and plot the tree using
 
 .. note::
 
-       All the codes can be found in `Example_Code <../Example_Code/>`__.
+       All the example codes can be found in https://github.com/heche-psb/evotree-docs/tree/main/docs/Example_Code
 
 
