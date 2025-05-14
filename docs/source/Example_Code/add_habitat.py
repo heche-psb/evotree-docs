@@ -1,5 +1,8 @@
 from evotree.basicdraw import plottree
+from matplotlib.pyplot import cm
+import numpy as np
 TB,tree_object = plottree(tree="FigTree_newick")
+TB.fs =(12,14)
 TB.plotnodeuncertainty = True
 # Plot the node uncertainty (usually 95%HPD time uncertainty)
 #
@@ -30,5 +33,16 @@ TB.drawwgd(wgd="Spi_WGD.tsv",addlegend=True,legendlabel="Newly dated ancient pol
 # With external data on WGD date (example as Spirogloea muscicola), plot WGD dates in the corresponding time and phylogenetic location
 #
 #
-TB.showlegend(frameon=False,bbox_to_anchor=(0.60, 0.95))
-TB.saveplot('Add_WGD.svg')
+inixoffset = 0.60
+colors = cm.viridis(np.linspace(0, 1, 7))
+colormap = {i:colors[i] for i in range(7)}
+Map_Habitat = {0:"Terrestrial",1:"Subaerial",2:"Freshwater",3:"Marine",4:"Terrestrial/Subaerial",5:"Subaerial/Freshwater",6:"Hypersaline"}
+TB.drawcircles(traittype="Habitat.tsv",xoffset=inixoffset,usetypedata=["Habitat"],traitobjectname="Habitat",scalingx=0.1,maxcirclesize=24,colormap=colormap,legendmap=Map_Habitat)
+# Add the categorical information from external data
+#
+#
+TB.showlegend(frameon=False,bbox_to_anchor=(0.40, 0.65),labelspacing=2.3)
+# Show all legends that were set before, set the desired order and other parameters
+#
+#
+TB.saveplot('Add_Habitat.svg')

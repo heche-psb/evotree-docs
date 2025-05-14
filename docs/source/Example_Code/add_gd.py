@@ -1,6 +1,9 @@
 from evotree.basicdraw import plottree
+from matplotlib.pyplot import cm
+import numpy as np
 TB,tree_object = plottree(tree="FigTree_newick")
 TB.plotnodeuncertainty = True
+TB.fs =(16,13)
 # Plot the node uncertainty (usually 95%HPD time uncertainty)
 #
 #
@@ -30,5 +33,27 @@ TB.drawwgd(wgd="Spi_WGD.tsv",addlegend=True,legendlabel="Newly dated ancient pol
 # With external data on WGD date (example as Spirogloea muscicola), plot WGD dates in the corresponding time and phylogenetic location
 #
 #
-TB.showlegend(frameon=False,bbox_to_anchor=(0.60, 0.95))
-TB.saveplot('Add_WGD.svg')
+inixoffset = 0.60
+colors = cm.viridis(np.linspace(0, 1, 7))
+colormap = {i:colors[i] for i in range(7)}
+Map_Habitat = {0:"Terrestrial",1:"Subaerial",2:"Freshwater",3:"Marine",4:"Terrestrial/Subaerial",5:"Subaerial/Freshwater",6:"Hypersaline"}
+TB.drawcircles(traittype="Habitat.tsv",xoffset=inixoffset,usetypedata=["Habitat"],traitobjectname="Habitat",scalingx=0.1,maxcirclesize=24,colormap=colormap,legendmap=Map_Habitat)
+# Add the categorical information from external data
+#
+#
+stepxoffset = 0.15
+cols = ["WGD-pairs-percentage","TD-pairs-percentage","PD-pairs-percentage","TRD-pairs-percentage","DSD-pairs-percentage"]
+for ind,col in enumerate(cols):
+    quantitylegendflag = True if ind == 0 else False
+    TB.drawcircles(traitquantity='dupfinder.info.percentage.tsv',usequantitydata=[col],xoffset=inixoffset+stepxoffset*(ind+1),traitobjectname="{}".format(col.replace("-percentage","")),scalingx=0.2,maxcirclesize=24,quantitylegend=quantitylegendflag,maxvaluescaler=1,decimal=2)
+# Add the gene duplication information from external data
+#
+#
+handles, labels = TB.ax.get_legend_handles_labels()
+order_dic = {'Terrestrial':1,'Terrestrial/Subaerial':2,'Subaerial':3,'Subaerial/Freshwater':4,'Freshwater':5,'Marine':6,'Hypersaline':7}
+labels, handles = zip(*sorted(zip(labels, handles), key=lambda x: order_dic.get(x[0],0)))
+TB.showlegend(handles,labels,frameon=False,bbox_to_anchor=(0.25, 0.45),labelspacing=2.3)
+# Show all legends that were set before, set the desired order and other parameters
+#
+#
+TB.saveplot('Add_GD.svg')
