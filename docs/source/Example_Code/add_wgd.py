@@ -26,4 +26,5 @@ TB.drawwgd(wgd="Spi_WGD.tsv",addlegend=True,legendlabel="Newly dated ancient pol
 # With external data on WGD date (example as Spirogloea muscicola), plot WGD dates in the corresponding time and phylogenetic location
 #
 #
+TB.showlegend(frameon=False,bbox_to_anchor=(0.60, 0.95))
 TB.saveplot('Add_WGD.svg')

@@ -119,7 +119,7 @@ Or using the command below:
 .. image:: Example_Data/Add_TimeScale.svg
 
 
-Here we have inferred the WGD date of `Spirogloea muscicola`, we can add this WGD using the command below:
+Here we have inferred the WGD date of `Spirogloea muscicola`, we can add this WGD and show legend using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> TB,tree_object = plottree(tree="FigTree_newick")
@@ -133,6 +133,7 @@ Here we have inferred the WGD date of `Spirogloea muscicola`, we can add this WG
 >>> TB.highlightclade(clades=[('Volvox_carteri','Pedinomonas_minor'),('Micromonas_pusilla','Ostreococcus_lucimarinus')],facecolors=['gray','black'],gradual=True,alphas=[0.3,0.3],rightoffset=0.01,topoffset=0.02,bottomoffset=-0.01,labels=['Chlorophytina','Prasinophytina'],labelboxcolors=['black','black'],labelcolors=['white','white'])
 >>> TB.drawscale(plotfulllengthscale=True,fullscaletickheight=0.1,fullscaleticklabeloffset=0.1,addgeo=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)])
 >>> TB.drawwgd(wgd="Spi_WGD.tsv",addlegend=True,legendlabel="Newly dated ancient polyploidy event",lw=8,al=0.8)
+>>> TB.showlegend(frameon=False,bbox_to_anchor=(0.60, 0.95))
 >>> TB.saveplot('Add_WGD.svg')
 
 Or using the command below:
