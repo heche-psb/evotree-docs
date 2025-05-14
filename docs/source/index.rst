@@ -16,3 +16,5 @@ Contents
 
    installation
    usage
+   Example_Code
+   Example_Data

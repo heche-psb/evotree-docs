@@ -12,7 +12,7 @@ The evotree library is published on Python Package Index (PyPI), users can insta
 
       $ virtualenv -p=python3 ENV (or python3/python -m venv ENV)
       $ source ENV/bin/activate
-      $ pip install evotree
+(ENV) $ pip install evotree
 
 
 
