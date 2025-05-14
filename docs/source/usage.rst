@@ -70,7 +70,7 @@ Or using the command below:
 .. image:: Example_Data/With_Fossil.svg
 
 
-We can further highlight specific clades using the command below:
+We can further **highlight specific clades** using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> TB,tree_object = plottree(tree="FigTree_newick")
@@ -94,7 +94,7 @@ Or using the command below:
 .. image:: Example_Data/Highlight_Clade.svg
 
 
-Adding a time-scale can be achieved using the command below:
+Adding a **time-scale** can be achieved using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> TB,tree_object = plottree(tree="FigTree_newick")
@@ -119,7 +119,7 @@ Or using the command below:
 .. image:: Example_Data/Add_TimeScale.svg
 
 
-Here we have inferred the WGD date of `Spirogloea muscicola`, we can add this WGD and show legend using the command below:
+Here we have inferred the WGD date of `Spirogloea muscicola`, we can **add this WGD** and **show legend** using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> TB,tree_object = plottree(tree="FigTree_newick")
@@ -146,7 +146,7 @@ Or using the command below:
 .. image:: Example_Data/Add_WGD.svg
 
 
-Now let's add habitat type data to the tree using the command below:
+Now let's **add habitat type** data to the tree using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> from matplotlib.pyplot import cm
@@ -181,7 +181,7 @@ Or using the command below:
 .. image:: Example_Data/Add_Habitat.svg
 
 
-We can plot gene duplication data to the tree while specify the order of legends using the command below:
+We can plot **gene duplication** data to the tree while **specify the order of legends** using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> from matplotlib.pyplot import cm
@@ -224,7 +224,7 @@ Or using the command below:
 .. image:: Example_Data/Add_GD.svg
 
 
-We can also show the gene duplication data as bar plots using the command below:
+We can also show the gene duplication data as **bar plots** using the command below:
 
 >>> from evotree.basicdraw import plottree
 >>> from matplotlib.pyplot import cm
