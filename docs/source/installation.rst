@@ -1,12 +1,15 @@
 Installation
 ============
 
+
+Here we suggest users the following two ways to install the ``evotree`` library.
+
 .. _pypi:
 
 PyPI
 ----
 
-The evotree library is published on Python Package Index (PyPI), users can install it using pip. We suggest that the installation is better performed under a virtual environment:
+The ``evotree`` library is published on ``Python Package Index (PyPI)``, users can install it using ``pip``. We suggest that the installation is better performed under a virtual environment:
 
 .. code-block:: console
 
