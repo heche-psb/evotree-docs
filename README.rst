@@ -1,9 +1,5 @@
-Template for the Read the Docs tutorial
+evotree library documentation
 =======================================
+evotree is library for plotting phylogenetic tree with numerous versatility and conduct a number of comparative phylogenetic analyses.
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+View the documentation here: https://evotree-docs.readthedocs.io/en/latest/
