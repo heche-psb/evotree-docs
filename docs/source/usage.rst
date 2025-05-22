@@ -290,5 +290,7 @@ Or using the command below:
 
       (ENV)$ python Example_Code/constant_pbmm.py
 
+.. note::
+        We refer users to the :doc:`model` section for detailed model structure under the hood.
 
 
