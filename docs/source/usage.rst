@@ -266,10 +266,11 @@ Or using the command below:
 .. image:: Example_Data/GD_Bar.svg
 
 
+
 .. _pbmm:
 
 PBMM
---------
+----
 
 We can infer the MLE of ancestral trait values for each internal node given a phylogenetic tree and a continuous trait data, using the command below:
 
