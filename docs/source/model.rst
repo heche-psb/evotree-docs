@@ -81,7 +81,24 @@ The MLE for :math:`\sigma^2` is:
    \hat{\sigma}^2 = \frac{1}{n} (\mathbf{X} - \hat{\mu} \mathbf{1})^\top \mathbf{C}^{-1} (\mathbf{X} - \hat{\mu} \mathbf{1})
 
 
-Accordingly, the exact maximum likelihood can also be calculated by simply putting :math:`\hat{\mu}` and :math:`\hat{\sigma}^2` back to the likelihood function.
+
+Accordingly, the exact maximum likelihood can also be calculated by simply substituting :math:`\hat{\mu}` and :math:`\hat{\sigma}^2` back to the likelihood function.
+
+Besides, the variance of :math:`\hat{\mu}` is known as follows:
+
+.. math::
+
+   \mathrm{Var}(\hat{\mu}) = \frac{\hat{\sigma}^2}{\mathbf{1}^T \mathbf{C}^{-1} \mathbf{1}}
+
+
+
+The variance of :math:`\hat{\sigma}^2` is known as follows:
+
+.. math::
+
+   \mathrm{Var}(\hat{\sigma}^2) = \frac{2 \hat{\sigma}^4 (n-1)}{n^2}
+
+
 
 We can further show that the trait values at internal nodes and tips follow a joint multivariate normal distribution:
 
@@ -129,5 +146,4 @@ Which is essentially the best linear unbiased predictor (BLUP) under the Brownia
         The MLE estimates of internal nodes are independent of :math:`\sigma^2` (since :math:`\sigma^2` scales the covariance but does not affect the optimal relative positioning of nodes). Thus, once :math:`\hat{\mu}` is known, the MLE of internal node values is fully determined by the tree structure and tip data. The MLEs are equivalent to the ``ancestral state reconstruction`` under PBMM.
 
 
-
-
+The MLE for :math:`\mu` and its variance can further be utilized as the parameter for the prior setting in the following variable-rate PBMM.
