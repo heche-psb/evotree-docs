@@ -146,4 +146,14 @@ Which is essentially the best linear unbiased predictor (BLUP) under the Brownia
         The MLE estimates of internal nodes are independent of :math:`\sigma^2` (since :math:`\sigma^2` scales the covariance but does not affect the optimal relative positioning of nodes). Thus, once :math:`\hat{\mu}` is known, the MLE of internal node values is fully determined by the tree structure and tip data. The MLEs are equivalent to the ``ancestral state reconstruction`` under PBMM.
 
 
-The MLE for :math:`\mu` and its variance can further be utilized as the parameter for the prior setting in the following variable-rate PBMM.
+The MLE for :math:`\mu` and :math:`\sigma^2` and their variances can further be utilized as the parameter for the prior setting in the following variable-rate PBMM.
+
+In a variable-rate PBMM, similar to the rate setting in a common molecular clock model, the prior rate (i.e., :math:`\sigma^2`) of each branch (i.e., both internal and tip branches) is assumed to follow a Gamma distribution, :math:`\text{Gamma}(\alpha, \beta)`, where the :math:`\alpha` and :math:`\beta` are determined by default via the MLE for :math:`\sigma^2` and its variance using the following equations:
+
+.. math::
+
+   \beta = \frac{\mu}{\sigma^2}, \quad \alpha = \mu \cdot \beta = \frac{\mu^2}{\sigma^2}
+
+The ancestral root trait value :math:`\mu` is assumed to follow a normal distribution :math:`\mu \sim \mathcal{N}(\mu, \sigma^2)`.
+
+With the above prior setting, the posterior rate samples were inferred using MCMC with the No U-Turn Sampler (NUTS) within ``NumPyro``.

@@ -272,7 +272,7 @@ Or using the command below:
 PBMM
 ----
 
-We can infer the MLE of ancestral trait values for each internal node given a phylogenetic tree and a continuous trait data, using the command below:
+We can infer the MLE of ancestral trait values for each internal node given a phylogenetic tree and a set of continuous trait data, using the command below:
 
 >>> from evotree.simulatepbmm import PBMMBuilder
 >>> PBMM = PBMMBuilder(tree='Fern.newick',trait='Fern_Data.tsv',traitcolname='Average DNA amount per chromosome (Mb)',traitname='Average chromosome size')
@@ -294,3 +294,22 @@ Or using the command below:
         We refer users to the :doc:`model` section for detailed model structure under the hood.
 
 
+The assumption of constant rates across lineages is barely valid in real-world data, we thus employ a variable-rate PBMM, using the command below:
+
+>>> from evotree.simulatepbmm import PBMMBuilder
+>>> PBMM = PBMMBuilder(tree='Fern.newick',trait='Fern_Data.tsv',traitcolname='Average DNA amount per chromosome (Mb)',traitname='Average chromosome size')
+>>> PBMM.ancestry_infer_variablepbmm(num_warmup=200,num_samples=200,treeinfooutput="Tree_info.tsv",posteriorsamplesoutput="Posterior_Samples.tsv",bayesstatsoutput="Posterior_Samples_Stats.tsv")
+>>> TB = PBMM.drawalltrait_variable(topologylw=3,nodetextdecimal=2,traitdecimal=2)
+>>> TB.drawscale(plotfulllengthscale=True,fullscaletickheight=0.1,fullscaleticklabeloffset=0.1,addgeo=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(5)])
+>>> TB.saveplot("Variable_Ancestral_Trait_Reconstruction.svg")
+
+.. image:: Example_Data/Variable_Ancestral_Trait_Reconstruction.svg
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/variable_pbmm.py
+
+
+The posterior samples and their statistics (e.g., CI and ESS) can be traced in the corresponding ``*.tsv`` files.
