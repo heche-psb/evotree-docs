@@ -312,4 +312,19 @@ Or using the command below:
       (ENV)$ python Example_Code/variable_pbmm.py
 
 
-The posterior samples and their statistics (e.g., CI and ESS) can be traced in the corresponding ``*.tsv`` files.
+The posterior samples and their statistics (e.g., **CI** and **ESS**) can be traced in the corresponding ``*.tsv`` files. We can use the ``ploter`` module to trace the posterior samples:
+
+>>> from evotree.ploter import Tracer
+>>> Tracer_oj = Tracer(data="Posterior_Samples.tsv",usedata=["Polypodiales_sigma2","Cyatheales_sigma2"],n_row=1,n_col=2,n_chains=2,fs=(14,6))
+>>> Tracer_oj.basic_draw()
+>>> Tracer_oj.saveplot(output="Trace_Posterior_Samples.svg")
+
+.. image:: Example_Data/Trace_Posterior_Samples.svg
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/trace_samples.py
+
+
