@@ -298,7 +298,8 @@ The assumption of constant rates across lineages is barely valid in real-world d
 
 >>> from evotree.simulatepbmm import PBMMBuilder
 >>> PBMM = PBMMBuilder(tree='Fern.newick',trait='Fern_Data.tsv',traitcolname='Average DNA amount per chromosome (Mb)',traitname='Average chromosome size')
->>> PBMM.ancestry_infer_variablepbmm(num_warmup=200,num_samples=200,treeinfooutput="Tree_info.tsv",posteriorsamplesoutput="Posterior_Samples.tsv",bayesstatsoutput="Posterior_Samples_Stats.tsv")
+>>> PBMM.exportnodetips(output="Tree_info.tsv")
+>>> PBMM.ancestry_infer_variablepbmm(num_warmup=200,num_samples=200,posteriorsamplesoutput="Posterior_Samples.tsv",bayesstatsoutput="Posterior_Samples_Stats.tsv")
 >>> TB = PBMM.drawalltrait_variable(topologylw=3,nodetextdecimal=2,traitdecimal=2)
 >>> TB.drawscale(plotfulllengthscale=True,fullscaletickheight=0.1,fullscaleticklabeloffset=0.1,addgeo=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(5)])
 >>> TB.saveplot("Variable_Ancestral_Trait_Reconstruction.svg")
@@ -326,5 +327,59 @@ Or using the command below:
 .. code-block:: console
 
       (ENV)$ python Example_Code/trace_samples.py
+
+
+To determine whether two branches have significantly different rates, we can calculate the Bayes Factor (BF) using the Savage-Dickey density ratio, using the command below:
+
+>>> from evotree.simulatepbmm import PBMMBuilder,savage_dickey_density_ratio,writebf
+>>> PBMM = PBMMBuilder(tree='Fern.newick',trait='Fern_Data.tsv',traitcolname='Average DNA amount per chromosome (Mb)',traitname='Average chromosome size')
+>>> PBMM.calculate_ini_parameters()
+>>> pairs_to_compare = ["Equisetales_sigma2","Psilotales_sigma2","Ophioglossales_sigma2","Marattiales_sigma2"]
+>>> BF_Pair = savage_dickey_density_ratio(PBMM,sample="Posterior_Samples.tsv",compared_parameters=pairs_to_compare,lognormal=True)
+>>> writebf(BF_Pair,output="BF.tsv")
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/bf.py
+
+We get the following results:
+
+.. csv-table:: Bayes Factor
+        :file: Example_Data/BF.csv
+        :header-rows: 1
+        :delim: ,
+
+We get some BF which were within (1/3,1) or (1,3), suggesting inconclusive evidence for the rate difference nor the indifference.
+
+
+We can calculate the phylogenetic signal represented by Pagel's :math:`\lambda` for each trait, using the command below:
+
+>>> evotree.simulatepbmm import PBMMBuilder
+>>> import pandas as pd
+>>> df = pd.read_csv("Fern_Data.tsv",header=0,index_col=0,sep='\t')
+>>> all_trait_names = df.columns
+>>> for trait_name in all_trait_names:
+>>>     PBMM = PBMMBuilder(tree='Fern.newick',trait='Fern_Data.tsv',traitcolname=trait_name,traitname=trait_name)
+>>>     PBMM.pagel_lambda()
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/pagel_lambda.py
+
+We get the following results:
+
+
+:1: Pagel's :math:`\lambda` 0.9999940391390134 for Round of WGD
+:2: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Species richness
+:3: Pagel's :math:`\lambda` 0.5540043919832507 for Holoploid genome size 1C (Mb)
+:4: Pagel's :math:`\lambda` 0.4861442493345799 for Monoploid genome size 1Cx (Mb)
+:5: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Average DNA amount per chromosome (Mb)
+:6: Pagel's :math:`\lambda` 0.3626291444231002 for Minimum  holoploid genome size (Mb)
+:7: Pagel's :math:`\lambda` 0.4800180909151914 for Maximum holoploid genome size (Mb)
+
 
 
