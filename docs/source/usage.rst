@@ -396,6 +396,248 @@ Or using the command below:
 .. image:: Example_Data/Baisc_Tree_Polar_Highlight_Clade.svg
 
 
+We can add a **time-scale** using the command below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.highlightcladepolar(clades=[('Volvox_carteri','Pedinomonas_minor'),('Micromonas_pusilla','Ostreococcus_lucimarinus')],facecolors=['gray','black'],gradual=False,alphas=[0.3,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Chlorophytina','Prasinophytina'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addgeo=True,fulltickscaler=2.5)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale.svg
+
+
+In the above example we plot the chronostratigraphic boundaries in the remaining 5-degree ring with ticks marked every 100 million years. We can add the arc spanning the 355-degree tree, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],fullscalecolor='gray',fullscalealpha=0.5,fullscalels='--',addgeo=True,fulltickscaler=2.5,addfulltickline=True)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Arc.svg')
+
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_arc.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Arc.svg
+
+
+Alternatively, we can also span the ring of chronostratigraphic boundaries in the 355-degree tree, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addgeo=True,fulltickscaler=2.5,addgeoreverse=True)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Reverse.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_reverse.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Reverse.svg
+
+
+Note that in the above plot the clade highlight was covered completely. We can set the transparency of the ring by setting ``geoalpha``, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addgeo=True,fulltickscaler=2.5,addgeoreverse=True,geoalpha=0.2)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Reverse_Transparent.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_reverse_transparent.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Reverse_Transparent.svg
+
+
+Nonetheless, it still doesn't look good. Let's draw the chronostratigraphic boundaries by simple lines in the 355-degree span, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addgeo=True,fulltickscaler=2.5,addgeoline=True,fullscalels='--',geolw=1)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Line.svg')
+
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_line.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Line.svg
+
+
+Or we can just make it simpler with rings following ticks, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()                                                                                                                              >>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addfulltickring=True,fulltickscaler=2.5,fullscaletickringcolors=["gray","black"]*7,fullscaletickringalphas=[0.1]*14)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Simplering.svg')
+
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_simplering.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Simplering.svg
+
+
+We can further add arc onto it, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],addfulltickring=True,fulltickscaler=2.5,fullscaletickringcolors=["gray","black"]*7,fullscaletickringalphas=[0.1]*14,addfulltickline=True,fullscalels='--',fullscalealpha=0.5,fullscalecolor='gray')
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Simplering_Arc.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_simplering_arc.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Simplering_Arc.svg
+
+                                                                                                                                                
+We can draw minimally only the tick, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],fulltickscaler=2.5)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Onlytick.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_onlytick.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Onlytick.svg
+
+
+Or we can draw minimally only the arc, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],fullscalecolor='gray',fullscalealpha=0.5,fullscalels='--',addfulltickline=True,notick=True)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Onlyarc.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_onlyarc.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Onlyarc.svg
+
+                                                              
+Or we can draw minimally only the ring, using the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.drawscalepolar(plotfulllengthscale=True,geoscaling=100,fullscalexticks=[int(i*100) for i in range(14)],notick=True,addfulltickring=True,fullscaletickringcolors=["gray","black"]*7,fullscaletickringalphas=[0.1]*14)
+>>> TB.saveplot('Baisc_Tree_Polar_Add_TimeScale_Onlyring.svg')
+
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_add_timescale_onlyring.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Onlyring.svg
 
 Besides rectangular and ultrametric tree, we can also draw polar and non-ultrametric tree. Here we use a species tree of 243 land plants (unpublished data) and code below.
 
