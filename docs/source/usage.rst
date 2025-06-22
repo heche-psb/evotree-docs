@@ -264,7 +264,94 @@ Or using the command below:
 
 
 .. image:: Example_Data/GD_Bar.svg
+ 
+Besides rectangular and ultrametric tree, we can also draw polar and non-ultrametric tree. Here we use a species tree of 243 land plants (unpublished data) and code below.
 
+>>> from evotree.basicdraw import plottree
+>>> from matplotlib.pyplot import cm
+>>> import numpy as np
+>>> from Bio import Phylo
+>>> Tree = Phylo.read("Example_243.tree",'newick')
+>>> for tip in Tree.get_terminals():
+>>>     if tip.name.endswith(".cds"):
+>>>             tip.name = tip.name[:-4]
+>>> TB,tree_object = plottree(treeobject=Tree)
+>>> TB.fs =(24,24)
+>>> TB.polardraw()
+>>> colors = cm.viridis(np.linspace(0, 1, 7))
+>>> TB.highlightcladepolar(clades=[('Amborella-trichopoda','Malus-doumeri'),('Gnetum-montanum','Taxus-wallichiana'),('Dipteris-shenzhenensis','Azolla-filiculoides'),('Huperzia-asiatica','Selaginella-moellendorffii'),('Leiosporoceros-dussii','Phaeoceros-laevis_902'),('Haplomitrium-mnioides','Herbertus-kurzii'),('Takakia-lepidozioides','Brachythecium-laetum')],facecolors=colors,alphas=[0.5]*7,rightoffset=0,topoffset=0,bottomoffset=0,labels=['Angiosperm','Gymnosperm','Fern','Lycophyte','Hornwort','Liverwort','Moss'],labelboxcolors=['black']*7,labelcolors=['white']*7,gradual=False,convexhull=True,saturations=[0.8]*7,convexsmoothness=1000,convexalpha=None)
+>>> TB.showlegend(frameon=False,fontsize=35)
+>>> TB.saveplot('POLAR_NONULTRA.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/polar_nonultra.py
+
+
+.. image:: Example_Data/POLAR_NONULTRA.svg
+
+The shape of the highlight can be changed to be less smooth or just as a simple Convex Hull. For the former, simply change the parameter ``convexsmoothness`` to be, say 100 or 50. For the latter, we need to set the ``convexsmoothness`` as ``None``, with the example code as below.
+
+>>> from evotree.basicdraw import plottree
+>>> from matplotlib.pyplot import cm
+>>> import numpy as np
+>>> from Bio import Phylo
+>>> Tree = Phylo.read("Example_243.tree",'newick')
+>>> for tip in Tree.get_terminals():
+>>>     if tip.name.endswith(".cds"):
+>>>             tip.name = tip.name[:-4]
+>>> TB,tree_object = plottree(treeobject=Tree)
+>>> TB.fs =(24,24)
+>>> TB.polardraw()
+>>> colors = cm.viridis(np.linspace(0, 1, 7))
+>>> TB.highlightcladepolar(clades=[('Amborella-trichopoda','Malus-doumeri'),('Gnetum-montanum','Taxus-wallichiana'),('Dipteris-shenzhenensis','Azolla-filiculoides'),('Huperzia-asiatica','Selaginella-moellendorffii'),('Leiosporoceros-dussii','Phaeoceros-laevis_902'),('Haplomitrium-mnioides','Herbertus-kurzii'),('Takakia-lepidozioides','Brachythecium-laetum')],facecolors=colors,alphas=[0.5]*7,rightoffset=0,topoffset=0,bottomoffset=0,labels=['Angiosperm','Gymnosperm','Fern','Lycophyte','Hornwort','Liverwort','Moss'],labelboxcolors=['black']*7,labelcolors=['white']*7,gradual=False,convexhull=True,saturations=[0.8]*7,convexsmoothness=None,convexalpha=None)
+>>> TB.showlegend(frameon=False,fontsize=35)
+>>> TB.saveplot('POLAR_NONULTRA_CONVEX_HULL.svg')                                                                                                           
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/polar_nonultra_convex_hull.py
+
+
+.. image:: Example_Data/POLAR_NONULTRA_CONVEX_HULL.svg
+
+
+The ``alpha shape`` can also be specified using the parameter ``convexalpha``. We show below an example of setting ``convexalpha`` as 1.
+
+>>> from evotree.basicdraw import plottree
+>>> from matplotlib.pyplot import cm
+>>> import numpy as np
+>>> from Bio import Phylo
+>>> Tree = Phylo.read("Example_243.tree",'newick')
+>>> for tip in Tree.get_terminals():
+>>>     if tip.name.endswith(".cds"):
+>>>             tip.name = tip.name[:-4]
+>>> TB,tree_object = plottree(treeobject=Tree)
+>>> TB.fs =(24,24)
+>>> TB.polardraw()
+>>> colors = cm.viridis(np.linspace(0, 1, 7))
+>>> TB.highlightcladepolar(clades=[('Amborella-trichopoda','Malus-doumeri'),('Gnetum-montanum','Taxus-wallichiana'),('Dipteris-shenzhenensis','Azolla-filiculoides'),('Huperzia-asiatica','Selaginella-moellendorffii'),('Leiosporoceros-dussii','Phaeoceros-laevis_902'),('Haplomitrium-mnioides','Herbertus-kurzii'),('Takakia-lepidozioides','Brachythecium-laetum')],facecolors=colors,alphas=[0.5]*7,rightoffset=0,topoffset=0,bottomoffset=0,labels=['Angiosperm','Gymnosperm','Fern','Lycophyte','Hornwort','Liverwort','Moss'],labelboxcolors=['black']*7,labelcolors=['white']*7,gradual=False,convexhull=True,saturations=[0.8]*7,convexsmoothness=None,convexalpha=1)
+>>> TB.showlegend(frameon=False,fontsize=35)
+>>> TB.saveplot('POLAR_NONULTRA_ALPHA_SHAPE.svg')
+
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/polar_nonultra_alpha_shape.py
+
+
+.. image:: Example_Data/POLAR_NONULTRA_ALPHA_SHAPE.svg
+
+
+.. note::
+
+       Small alpha (e.g. 0.1) will lead to tighter and more detailed shape (may break into pieces). Medium alpha (e.g. 1) can balance between detail and generality. Large alpha (e.g. 100) will approach convex hull.
 
 
 .. _pbmm:
@@ -373,13 +460,12 @@ Or using the command below:
 We get the following results:
 
 
-:1: Pagel's :math:`\lambda` 0.9999940391390134 for Round of WGD
-:2: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Species richness
-:3: Pagel's :math:`\lambda` 0.5540043919832507 for Holoploid genome size 1C (Mb)
-:4: Pagel's :math:`\lambda` 0.4861442493345799 for Monoploid genome size 1Cx (Mb)
-:5: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Average DNA amount per chromosome (Mb)
-:6: Pagel's :math:`\lambda` 0.3626291444231002 for Minimum  holoploid genome size (Mb)
-:7: Pagel's :math:`\lambda` 0.4800180909151914 for Maximum holoploid genome size (Mb)
+:1: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Species richness (P-value: 1.00000)
+:2: Pagel's :math:`\lambda` 0.5540043919832507 for Holoploid genome size 1C (Mb) (P-value: 0.00000)
+:3: Pagel's :math:`\lambda` 0.4861442493345799 for Monoploid genome size 1Cx (Mb) (P-value: 0.00000)
+:4: Pagel's :math:`\lambda` 5.9608609865491405e-06 for Average DNA amount per chromosome (Mb) (P-value: 1.00000)
+:5: Pagel's :math:`\lambda` 0.3626291444231002 for Minimum  holoploid genome size (Mb) (P-value: 0.00000)
+:6: Pagel's :math:`\lambda` 0.4800180909151914 for Maximum holoploid genome size (Mb) (P-value: 0.00000)
 
 
-
+We can see that the traits pertaining to (Minimum or Maximum) Holoploid genome size and Monoploid genome size are subject to a significant phylogenetic signal.

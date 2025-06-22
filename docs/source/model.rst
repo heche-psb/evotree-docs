@@ -157,3 +157,10 @@ In a variable-rate PBMM, similar to the rate setting in a common molecular clock
 The ancestral root trait value :math:`\mu` is assumed to follow a normal distribution :math:`\mu \sim \mathcal{N}(\mu, \sigma^2)`.
 
 With the above prior setting, the posterior rate samples were inferred using MCMC with the No U-Turn Sampler (NUTS) within ``NumPyro``.
+
+.. _modelpgls:
+
+PGLS
+----
+
+The **Phylogenetic Generalised Least Squares (PGLS)** (also known as phylogenetic regression or phylogenetic general linear model) is a specialized form of Generalised Least Squares (GLS) that leverages phylogenetic information to infer a corrected slope and intetcept with the expected covariance of residuals being accounted for. Phenotype or trait datasets involving different species typically do not provide independent data points, which deviates the basic assumptions of many statistical tests (e.g. linear regression). That is where the PGLS can properly kick in. PGLS can incorporate the phylogenetic signal into the covariance structure. When there is no phylogenetic signal, .
