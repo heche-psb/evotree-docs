@@ -1,10 +1,10 @@
 Usage
 =====
 
-.. _plottree:
+.. _rectree:
 
-Plottree
---------
+Rectangular Tree
+----------------
 
 Let's draw a simple phylogenetic tree using the command below:
 
@@ -264,7 +264,139 @@ Or using the command below:
 
 
 .. image:: Example_Data/GD_Bar.svg
- 
+
+.. _polartree:
+
+Polar Tree
+----------
+
+We can draw all the above rectangular trees in a polar coordinate system. To draw a simple polar tree, we can use the code below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.polardraw()
+>>> TB.saveplot('Baisc_Tree_Polar.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar.svg
+
+We can change different spanning angles by setting the ``polar`` parameter. Below we set the ``polar`` as 60,120,180,270,330,355 in a single graph.
+
+>>> from evotree.basicdraw import plottree
+>>> import matplotlib.pyplot as plt
+>>> fig, axes = plt.subplots(2,3,figsize=(24, 16),subplot_kw={'projection': 'polar'})
+>>> angles = [60,120,180,270,330,355]
+>>> for angle,ax in zip(angles,axes.flatten()):
+>>>     TB,tree_object = plottree(tree="FigTree_newick",userfig=fig,userax=ax)
+>>>     TB.polardraw(polar=angle)
+>>> TB.saveplot('Baisc_Tree_Polar_Angles.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_angles.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Angles.svg
+
+
+.. note::
+
+       The ``axes`` object must be created with a polar projection. We didn't set 360 degree because conceivably that will lead the top and bottom branch to overlap.
+
+We can also start from different angles (default is 0) by setting the ``start`` parameter. Below we set the ``start`` as 30,60,90,120,150,180 in a single graph with 180 degree span.
+
+>>> from evotree.basicdraw import plottree
+>>> import matplotlib.pyplot as plt
+>>> fig, axes = plt.subplots(2,3,figsize=(24, 16),subplot_kw={'projection': 'polar'})
+>>> start_angles = [30,60,90,120,150,180]
+>>> for angle,ax in zip(start_angles,axes.flatten()):
+>>>     TB,tree_object = plottree(tree="FigTree_newick",userfig=fig,userax=ax)
+>>>     TB.polardraw(polar=angle+180,start=angle)
+>>> TB.saveplot('Baisc_Tree_Polar_Start_Angles.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_start_angles.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Start_Angles.svg
+
+
+We can also add **uncertainty bands** to each internal nodes using the command below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> TB.saveplot('Baisc_Tree_Polar_With_Uncertainty.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_with_uncertainty.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_With_Uncertainty.svg
+
+**Fossil calibrations** can be added using the command below.
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.saveplot('Baisc_Tree_Polar_With_Fossil.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_with_fossil.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_With_Fossil.svg
+
+We can further **highlight specific clades** using the command below:
+
+>>> from evotree.basicdraw import plottree
+>>> TB,tree_object = plottree(tree="FigTree_newick")
+>>> TB.plotnodeuncertainty = True
+>>> TB.nulw = 3
+>>> TB.nuccolor = 'gray'
+>>> TB.polardraw()
+>>> fossilnodes=[('Prasinoderma_coloniale','Amborella_trichopoda'),('Ostreococcus_lucimarinus','Pedinomonas_minor'),('Pedinomonas_minor','Mesostigma_viride'),('Botryococcus_braunii','Volvox_carteri'),('Botryococcus_braunii','Coccomyxa_subellipsoidea'),('Spirogloea_muscicola','Amborella_trichopoda'),('Anthoceros_angustus','Amborella_trichopoda'),('Takakia_lepidozioides','Marchantia_polymorpha'),('Selaginella_moellendorffii','Amborella_trichopoda'),('Adiantum_capillus-veneris','Amborella_trichopoda'),('Cycas_panzhihuaensis','Amborella_trichopoda'),('Aristolochia_fimbriata','Amborella_trichopoda')]
+>>> TB.highlightnodepolar(nodes=fossilnodes,colors=['orange' for i in fossilnodes],nodesizes=[8 for i in fossilnodes],addlegend=True,legendlabel="Fossil calibrations")
+>>> TB.highlightcladepolar(clades=[('Amborella_trichopoda','Anthoceros_angustus'),('Zygnema_circumcarinatum_SAG_698-1b','Mesostigma_viride')],facecolors=['red','green'],gradual=False,alphas=[0.6,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Embryophyta','Streptophyta'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.highlightcladepolar(clades=[('Volvox_carteri','Pedinomonas_minor'),('Micromonas_pusilla','Ostreococcus_lucimarinus')],facecolors=['gray','black'],gradual=False,alphas=[0.3,0.3],rightoffset=0,topoffset=0,bottomoffset=0,labels=['Chlorophytina','Prasinophytina'],labelboxcolors=['black','black'],labelcolors=['white','white'],saturations=[0.8]*2,labelpositions=['bottom','bottom'])
+>>> TB.saveplot('Baisc_Tree_Polar_Highlight_Clade.svg')
+
+Or using the command below:
+
+.. code-block:: console
+
+      (ENV)$ python Example_Code/basic_tree_polar_highlight_clade.py
+
+
+.. image:: Example_Data/Baisc_Tree_Polar_Highlight_Clade.svg
+
+
+
 Besides rectangular and ultrametric tree, we can also draw polar and non-ultrametric tree. Here we use a species tree of 243 land plants (unpublished data) and code below.
 
 >>> from evotree.basicdraw import plottree
@@ -283,7 +415,7 @@ Besides rectangular and ultrametric tree, we can also draw polar and non-ultrame
 >>> TB.showlegend(frameon=False,fontsize=35)
 >>> TB.saveplot('POLAR_NONULTRA.svg')
 
-Or using the command below:
+Or using the command below.
 
 .. code-block:: console
 
