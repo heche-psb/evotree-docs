@@ -639,6 +639,11 @@ Or using the command below:
 
 .. image:: Example_Data/Baisc_Tree_Polar_Add_TimeScale_Onlyring.svg
 
+.. _polarnonultrametrictree:
+
+Polar Non-Ultrametric Tree
+--------------------------
+
 Besides rectangular and ultrametric tree, we can also draw polar and non-ultrametric tree. Here we use a species tree of 243 land plants (unpublished data) and code below.
 
 >>> from evotree.basicdraw import plottree
