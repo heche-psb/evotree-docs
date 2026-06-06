@@ -94,6 +94,7 @@ Or using the command below:
 .. image:: Example_Data/Highlight_Clade.svg
 
 We can also add strips for the highlight using the command below:
+
 >>> from evotree.basicdraw import plottree
 >>> TB,tree_object = plottree(tree="FigTree_newick")
 >>> TB.plotnodeuncertainty = True
